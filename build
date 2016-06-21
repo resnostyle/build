@@ -81,23 +81,25 @@ all: $(DEBS) $(RPMS)
 
 # Create tarball in buildroot
 # --exclude-vcs-ignores is broken
-$(BUILDROOT)/$(TARBALL):
-	@mkdir -p $(dir $@)
-	@echo "-------------------------------------------------------------------"
-	@echo "Creating source tarball"
-	@echo "-------------------------------------------------------------------"
-	tar \
-		--exclude-vcs \
-		--exclude-backups \
-		--exclude='./$(RELBUILDROOT)' \
-		$(TARBALL_EXTRA_ARGS) \
-		--exclude=FreeBSD --exclude=debian --exclude=rpm \
-		--transform='s,^\.,$(NAME),S' \
-		-czf $@ . ./VERSION $(TARBALL_EXTRA_FILES)
+#$(BUILDROOT)/$(TARBALL):
+#	@mkdir -p $(dir $@)
+#	@echo "-------------------------------------------------------------------"
+#	@echo "Creating source tarball"
+#	@echo "-------------------------------------------------------------------"
+#	tar \
+#		--exclude-vcs \
+#		--exclude-backups \
+#		--exclude='./$(RELBUILDROOT)' \
+#		$(TARBALL_EXTRA_ARGS) \
+#		--exclude=FreeBSD --exclude=debian --exclude=rpm \
+#		--transform='s,^\.,$(NAME),S' \
+#		-czf $@ . ./VERSION $(TARBALL_EXTRA_FILES)
+   wget http://www.haproxy.org/download/1.6/src/haproxy-1.6.5.tar.gz -o  $(BUILDROOT)/$(TARBALL)
+    
 
 # Copy tarball to buildroot/$OS-$DIST chroot
 $(BUILDROOT)/%/$(TARBALL): $(BUILDROOT)/$(TARBALL)
-	cp -pf $< $@
+#	cp -pf $< $@
 
 # Generate a temporary Docker file to run container with $USER
 $(BUILDROOT)/%/Dockerfile:
