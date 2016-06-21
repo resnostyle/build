@@ -87,7 +87,7 @@ $(BUILDROOT)/$(TARBALL):
 	@echo "Creating source tarball"
 	@echo "-------------------------------------------------------------------"
 
-   wget http://www.haproxy.org/download/1.6/src/haproxy-1.6.5.tar.gz -O $@
+wget http://www.haproxy.org/download/1.6/src/haproxy-1.6.5.tar.gz -O /home/travis/build/resnostyle/haproxy-rpm/build/root/haproxy-.tar.gz 
 #	tar \
 #		--exclude-vcs \
 #		--exclude-backups \
