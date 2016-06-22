@@ -164,7 +164,7 @@ $(BUILDROOT)/rpm-%/$(PRODUCT).spec: $(RPM_SPEC)
 
 #Copy SRC
 $(BUILDROOT)/src-%/$(PRODUCT).tar.gz: $(SRC)
-        cp -f $< $@
+	cp -f $< $@
 
 # A rule to build RPM packages
 $(BUILDROOT)/rpm-%/results/.done: $(BUILDROOT)/rpm-%/$(PRODUCT).spec \
