@@ -81,13 +81,11 @@ all: $(DEBS) $(RPMS)
 
 # Create tarball in buildroot
 # --exclude-vcs-ignores is broken
-$(BUILDROOT)/$(TARBALL):
-	@mkdir -p $(dir $@)
-	@echo "-------------------------------------------------------------------"
-	@echo "Creating source tarball"
-	@echo "-------------------------------------------------------------------"
-
-wget http://www.haproxy.org/download/1.6/src/haproxy-1.6.5.tar.gz -O /home/travis/build/resnostyle/haproxy-rpm/build/root/haproxy-.tar.gz 
+#$(BUILDROOT)/$(TARBALL):
+#	@mkdir -p $(dir $@)
+#	@echo "-------------------------------------------------------------------"
+#	@echo "Creating source tarball"
+#	@echo "-------------------------------------------------------------------"
 #	tar \
 #		--exclude-vcs \
 #		--exclude-backups \
@@ -163,6 +161,10 @@ $(BUILDROOT)/%/.build: $(BUILDROOT)/%/$(TARBALL) \
 $(BUILDROOT)/rpm-%/$(PRODUCT).spec: $(RPM_SPEC)
 	@mkdir -p $(dir $@)
 	cp -f $< $@
+
+#Copy SRC
+$(BUILDROOT)/src-%/$(PRODUCT).tar.gz: $(SRC)
+        cp -f $< $@
 
 # A rule to build RPM packages
 $(BUILDROOT)/rpm-%/results/.done: $(BUILDROOT)/rpm-%/$(PRODUCT).spec \
